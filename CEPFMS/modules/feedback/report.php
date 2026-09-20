@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../includes/cepfms_operational_helpers.php';
+requireCefPermission('cepfms.feedback.view');
+$rows=db()->query("SELECT s.reference_number,s.title,s.created_at,s.priority_level,s.status,c.name category_name,f.feedback_kind,f.service_area,f.citizen_rating FROM cef_submissions s JOIN cef_feedback_submissions f ON f.submission_id=s.id LEFT JOIN cef_categories c ON c.id=s.category_id WHERE s.submission_type='Feedback' AND s.deleted_at IS NULL ORDER BY s.created_at DESC")->fetchAll();
+$pageTitle='Public Feedback Report';$activeMenu='feedback';$extraCss=[appUrl('assets/css/cepfms-operational.css')];include __DIR__.'/../../layouts/header.php';
+?>
+<div class="app-wrapper"><?php include __DIR__.'/../../layouts/sidebar.php'; ?><main class="main-content"><div class="cef-head"><div><div class="cef-eyebrow">Operational Report</div><h1>Public Feedback Report</h1><p>Citizen feedback by reference, category, feedback kind, service area, rating, priority and current status.</p></div><a class="btn btn-outline-secondary" href="index.php">Feedback Registry</a></div><div class="card cef-card"><div class="table-responsive"><table class="table cef-table mb-0"><thead><tr><th>Reference</th><th>Feedback</th><th>Category</th><th>Kind</th><th>Service Area</th><th>Rating</th><th>Priority</th><th>Status</th></tr></thead><tbody><?php foreach($rows as $r): ?><tr><td><?= e($r['reference_number']) ?></td><td><?= e($r['title']) ?><div class="small text-muted"><?= formatDateTime($r['created_at']) ?></div></td><td><?= e($r['category_name']?:'Unclassified') ?></td><td><?= e($r['feedback_kind']) ?></td><td><?= e($r['service_area']?:'—') ?></td><td><?= $r['citizen_rating']?(int)$r['citizen_rating'].'/5':'—' ?></td><td><?= e($r['priority_level']) ?></td><td><?= e($r['status']) ?></td></tr><?php endforeach; ?></tbody></table></div></div></main></div>
+<?php include __DIR__.'/../../layouts/footer.php'; ?>

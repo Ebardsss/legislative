@@ -1,0 +1,14 @@
+assets/css/cepfms-operational.css
+database/migrations/migration_006_ticket_chat_citizen_attachments.sql
+database/validation_006_ticket_chat_citizen_attachments.sql
+includes/cepfms_operational_helpers.php
+includes/cepfms_ticket_chat.php
+modules/complaints/view.php
+modules/feedback/view.php
+modules/proposals/view.php
+modules/responses/ajax_followup.php
+modules/responses/ajax_upload.php
+modules/responses/view.php
+modules/shared/ajax_ticket_chat.php
+modules/shared/ajax_document_visibility.php
+pages/system_health.php

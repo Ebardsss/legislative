@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../includes/cepfms_operational_helpers.php';
+requireCefPermission('cepfms.complaints.view');
+$pdo=db();$pageTitle='Complaint & Issue Tracking';$activeMenu='complaints';$extraCss=[appUrl('assets/css/cepfms-operational.css')];
+
+$search=clean($_GET['search']??'');$status=clean($_GET['status']??'');$urgency=clean($_GET['urgency']??'');
+$where=["s.submission_type='Complaint'","s.deleted_at IS NULL"];$params=[];
+if($search!==''){$where[]='(s.reference_number LIKE :s1 OR s.title LIKE :s2 OR cp.affected_service LIKE :s3)';$like='%'.$search.'%';$params[':s1']=$like;$params[':s2']=$like;$params[':s3']=$like;}
+if($status!==''){$where[]='s.status=:status';$params[':status']=$status;}
+if($urgency!==''){$where[]='cp.urgency_level=:urgency';$params[':urgency']=$urgency;}
+$q=$pdo->prepare(
+"SELECT s.*,c.name category_name,cp.affected_service,cp.urgency_level,cp.response_target_at,cp.resolution_target_at,cp.resolved_at,
+ (SELECT COUNT(*) FROM cef_escalations e WHERE e.submission_id=s.id AND e.status='Open') open_escalations,
+ (SELECT COUNT(*) FROM cef_case_updates u WHERE u.submission_id=s.id) update_count,
+ (SELECT COUNT(*) FROM cef_ai_analysis a WHERE a.submission_id=s.id) ai_count,
+ (SELECT CONCAT_WS(' / ',o.name,cm.name,u.full_name) FROM cef_assignments a LEFT JOIN offices o ON o.id=a.office_id LEFT JOIN committees cm ON cm.id=a.committee_id LEFT JOIN users u ON u.id=a.assigned_user_id WHERE a.submission_id=s.id AND a.assignment_role='Primary' AND a.status<>'Cancelled' ORDER BY a.id DESC LIMIT 1) assignment_label
+ FROM cef_submissions s JOIN cef_complaints cp ON cp.submission_id=s.id
+ LEFT JOIN cef_categories c ON c.id=s.category_id
+ WHERE ".implode(' AND ',$where)." ORDER BY FIELD(cp.urgency_level,'Urgent','High','Normal','Low'),s.created_at DESC"
+);$q->execute($params);$rows=$q->fetchAll();
+$stats=$pdo->query("SELECT COUNT(*) total,SUM(s.status IN ('Submitted','Validated')) unassigned,SUM(s.status IN ('Assigned','In Progress','Awaiting Citizen')) active_count,SUM(s.status='Resolved') resolved,SUM(s.status='Closed') closed_count,SUM(s.status NOT IN ('Resolved','Closed','Rejected','Withdrawn') AND cp.resolution_target_at<NOW()) overdue FROM cef_submissions s JOIN cef_complaints cp ON cp.submission_id=s.id WHERE s.submission_type='Complaint' AND s.deleted_at IS NULL")->fetch()?:[];
+include __DIR__.'/../../layouts/header.php';
+?>
+<div class="app-wrapper"><?php include __DIR__.'/../../layouts/sidebar.php'; ?><main class="main-content">
+<div class="cef-head"><div><div class="cef-eyebrow"><i class="bi bi-exclamation-diamond"></i> Step 4 · Operational Backend</div><h1>Complaint & Issue Tracking</h1><p>Track complaints from intake through validation, assignment, service-level monitoring, progress updates, escalation, resolution and closure.</p></div><a class="btn btn-outline-secondary" target="_blank" href="<?= e(citizenPortalUrl('index.php')) ?>">Citizen Portal</a></div>
+<div class="cef-flow"><div><strong>1. Complaint</strong><small>Reference issued</small></div><div><strong>2. Validate</strong><small>Confirm actionable record</small></div><div><strong>3. Assign</strong><small>Office / committee / staff</small></div><div><strong>4. Act</strong><small>Progress updates</small></div><div><strong>5. Escalate</strong><small>SLA / urgency attention</small></div><div><strong>6. Resolve</strong><small>Resolution + closure</small></div></div>
+<div class="row g-3 mb-3"><?php foreach([['Complaints',$stats['total']??0,'bi-exclamation-diamond'],['Needs Assignment',$stats['unassigned']??0,'bi-person-plus'],['Active',$stats['active_count']??0,'bi-arrow-repeat'],['SLA Overdue',$stats['overdue']??0,'bi-alarm'],['Resolved',$stats['resolved']??0,'bi-check-circle'],['Closed',$stats['closed_count']??0,'bi-archive']] as [$l,$v,$i]): ?><div class="col-6 col-xl-2"><div class="cef-stat"><i class="bi <?= e($i) ?>"></i><div><strong><?= (int)$v ?></strong><small><?= e($l) ?></small></div></div></div><?php endforeach; ?></div>
+<div class="card cef-card mb-3"><div class="card-body"><form class="row g-2 align-items-end"><div class="col-xl-5"><label class="form-label small">Search</label><input class="form-control form-control-sm" name="search" value="<?= e($search) ?>"></div><div class="col-xl-3"><label class="form-label small">Status</label><select class="form-select form-select-sm" name="status"><option value="">All</option><?php foreach(cefSubmissionStatuses() as $x): ?><option <?= $status===$x?'selected':'' ?>><?= e($x) ?></option><?php endforeach; ?></select></div><div class="col-xl-3"><label class="form-label small">Urgency</label><select class="form-select form-select-sm" name="urgency"><option value="">All</option><?php foreach(cefPriorityLevels() as $x): ?><option <?= $urgency===$x?'selected':'' ?>><?= e($x) ?></option><?php endforeach; ?></select></div><div class="col-xl-1"><button class="btn btn-outline-primary btn-sm w-100"><i class="bi bi-funnel"></i></button></div></form></div></div>
+<div class="card cef-card"><div class="card-header d-flex justify-content-between"><span>Complaint Registry</span><a class="btn btn-sm btn-outline-primary" href="report.php">Report</a></div><div class="table-responsive"><table class="table table-hover cef-table mb-0"><thead><tr><th>Complaint</th><th>Service / Category</th><th>Urgency</th><th>Assignment</th><th>Resolution Target</th><th>Updates</th><th>Status</th><th class="text-end">Open</th></tr></thead><tbody>
+<?php if(!$rows): ?><tr><td colspan="8" class="text-center text-muted py-5">No complaint records found.</td></tr><?php endif; ?>
+<?php foreach($rows as $r): $slaOver=!in_array($r['status'],['Resolved','Closed','Rejected','Withdrawn'],true)&&$r['resolution_target_at']&&strtotime($r['resolution_target_at'])<time(); ?><tr><td><span class="cef-code"><?= e($r['reference_number']) ?></span><?php if((int)$r['ai_count']>0): ?><span class="badge bg-warning-subtle text-warning border border-warning-subtle ms-1" title="AI Assessed"><i class="bi bi-robot"></i> AI</span><?php endif; ?><div><strong><?= e($r['title']) ?></strong></div><div class="small text-muted"><?= formatDateTime($r['created_at']) ?></div></td><td><?= e($r['affected_service']?:'General issue') ?><div class="small text-muted"><?= e($r['category_name']?:'Unclassified') ?></div></td><td><?= e($r['urgency_level']) ?><?php if((int)$r['open_escalations']): ?><div class="small text-danger"><?= (int)$r['open_escalations'] ?> escalation(s)</div><?php endif; ?></td><td><?= e($r['assignment_label']?:'Unassigned') ?></td><td class="<?= $slaOver?'text-danger fw-bold':'' ?>"><?= formatDateTime($r['resolution_target_at']) ?><?= $slaOver?'<div class="small">OVERDUE</div>':'' ?></td><td><?= (int)$r['update_count'] ?></td><td><span class="cef-status <?= e(cefStatusClass($r['status'])) ?>"><?= e($r['status']) ?></span></td><td class="text-end"><a class="btn btn-sm btn-outline-primary" href="view.php?id=<?= (int)$r['id'] ?>"><i class="bi bi-eye"></i></a></td></tr><?php endforeach; ?>
+</tbody></table></div></div>
+</main></div>
+<?php include __DIR__.'/../../layouts/footer.php'; ?>

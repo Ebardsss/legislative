@@ -1,0 +1,859 @@
+:root {
+    --font-serif: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+    --bg-navy-dark: #070E1B;
+    --bg-navy-main: #0F1C34;
+    --bg-navy-card: #152648;
+    --bg-navy-light: #1A2F56;
+
+    --gold-primary: #D4AF37;
+    --gold-light: #E5C07B;
+    --gold-muted: #C5A880;
+    --gold-dark: #A8862A;
+    --gold-glow: rgba(212, 175, 55, 0.25);
+    --gold-border: rgba(212, 175, 55, 0.22);
+
+    --text-heading: #FFFFFF;
+    --text-body: #CBD5E1;
+    --text-muted: #94A3B8;
+    --text-gold: #E5C07B;
+
+    --navy: #071426;
+    --navy-soft: #0F1C34;
+    --gold: #D4AF37;
+    --body: #F8FAFC;
+    --border: #E2E8F0;
+    --text: #0F172A;
+    --muted: #64748B;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: #1E293B;
+    background: var(--body);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: #0F172A;
+    letter-spacing: 0.3px;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   TOP NAVIGATION BAR - Executive Luxury Styling
+   ========================================================================== */
+.public-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 76px;
+    padding: 0.85rem clamp(1rem, 5vw, 5rem);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(15, 28, 52, 0.04);
+}
+
+.public-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.public-brand-logo {
+    width: 48px;
+    height: 48px;
+    max-width: 48px;
+    max-height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+}
+
+.public-brand strong {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0F172A;
+    letter-spacing: 0.6px;
+    line-height: 1.2;
+    display: block;
+}
+
+.public-brand small {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #B89350;
+    display: block;
+    margin-top: 3px;
+}
+
+.public-topbar nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.public-topbar nav > a:not(.public-staff-link):not(.public-portal-link) {
+    font-family: var(--font-sans);
+    color: #475569;
+    font-size: 0.825rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.public-topbar nav > a:not(.public-staff-link):not(.public-portal-link):hover {
+    color: #B8860B;
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.public-portal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.785rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #0F172A !important;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+}
+
+.public-portal-link i {
+    color: #B89350;
+    transition: transform 0.25s ease;
+}
+
+.public-portal-link:hover {
+    background: #0F172A;
+    color: #FFFFFF !important;
+    border-color: #0F172A;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16);
+    transform: translateY(-1px);
+}
+
+.public-portal-link:hover i {
+    color: #F59E0B;
+    transform: translateX(-3px);
+}
+
+.public-staff-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.525rem 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.785rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #070E1B !important;
+    background: linear-gradient(135deg, #C5A880 0%, #D4AF37 50%, #B89350 100%);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.28);
+    transition: all 0.25s ease;
+}
+
+.public-staff-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(212, 175, 55, 0.4);
+    color: #070E1B !important;
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C07B 50%, #C5A880 100%);
+}
+
+/* ==========================================================================
+   HERO SECTION - Grand Executive Aesthetic
+   ========================================================================== */
+.public-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    gap: 3.5rem;
+    align-items: center;
+    min-height: 600px;
+    padding: 5.5rem clamp(1rem, 7vw, 7rem);
+    color: #FFFFFF;
+    background: radial-gradient(ellipse 80% 50% at 85% 20%, rgba(212, 175, 55, 0.18) 0%, transparent 60%),
+        linear-gradient(135deg, #070E1B 0%, #0F1C34 50%, #152648 100%);
+    border-bottom: 1px solid var(--gold-border);
+}
+
+.public-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #E5C07B;
+    margin-bottom: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.public-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: var(--gold-primary);
+    display: inline-block;
+}
+
+.public-hero h1 {
+    font-family: var(--font-serif);
+    max-width: 820px;
+    margin: 0;
+    font-size: clamp(2.35rem, 4.6vw, 3.85rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-heading);
+    letter-spacing: -0.5px;
+}
+
+.public-hero h1 .highlight-gold {
+    color: var(--gold-primary);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.public-hero-copy > p {
+    font-family: var(--font-sans);
+    max-width: 720px;
+    margin: 1.35rem 0 0;
+    color: var(--text-body);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+.public-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+}
+
+.public-hero-actions a.btn-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.6rem;
+    background: linear-gradient(135deg, #C5A880 0%, #D4AF37 50%, #B89350 100%);
+    border: none;
+    border-radius: 8px;
+    color: #070E1B;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.28);
+    transition: all 0.3s ease;
+}
+
+.public-hero-actions a.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.42);
+    color: #070E1B;
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C07B 50%, #C5A880 100%);
+}
+
+.public-hero-actions a.btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.public-hero-actions a.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #D4AF37;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+.public-hero-card {
+    display: grid;
+    gap: 0.95rem;
+    padding: 1.6rem;
+    background: rgba(15, 28, 52, 0.88);
+    border: 1px solid var(--gold-border);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
+.public-hero-card > div {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 0.95rem;
+    align-items: center;
+    padding: 1rem 1.15rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.public-hero-card > div:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(212, 175, 55, 0.35);
+    transform: translateX(4px);
+}
+
+.public-hero-card > div > span {
+    display: inline-flex;
+    grid-row: 1 / 3;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    color: #070E1B;
+    background: linear-gradient(135deg, #D4AF37 0%, #B89350 100%);
+    border-radius: 11px;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+}
+
+.public-hero-card strong {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    display: block;
+}
+
+.public-hero-card small {
+    font-family: var(--font-sans);
+    color: #94A3B8;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    margin-top: 3px;
+    display: block;
+}
+
+/* ==========================================================================
+   PUBLIC SECTIONS & EXECUTIVE HEADINGS
+   ========================================================================== */
+.public-section {
+    padding: 5rem clamp(1rem, 7vw, 7rem);
+}
+
+.public-section-heading {
+    max-width: 800px;
+    margin: 0 auto 2.75rem;
+    text-align: center;
+}
+
+.public-section-heading > span {
+    font-family: var(--font-sans);
+    color: #B89350;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.65rem;
+}
+
+.public-section-heading h2 {
+    font-family: var(--font-serif);
+    margin: 0;
+    color: #0F172A;
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+}
+
+.public-section-heading p {
+    font-family: var(--font-sans);
+    margin: 0.85rem auto 0;
+    color: #64748B;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 680px;
+}
+
+/* ==========================================================================
+   TYPE SWITCHER - Segmented Executive Tabs
+   ========================================================================== */
+.public-type-switch {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.public-type-switch button {
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 1.25rem 1.4rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(15, 28, 52, 0.03);
+    cursor: pointer;
+}
+
+.public-type-switch button:hover {
+    border-color: #D4AF37;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 28, 52, 0.08);
+}
+
+.public-type-switch button.active {
+    border-color: #D4AF37;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFDF8 100%);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.22);
+    border-width: 2px;
+}
+
+.public-type-switch strong {
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #0F172A;
+    letter-spacing: 0.4px;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.public-type-switch button.active strong {
+    color: #B8860B;
+}
+
+.public-type-switch small {
+    font-family: var(--font-sans);
+    display: block;
+    font-size: 0.825rem;
+    color: #64748B;
+    margin-top: 0.45rem;
+    line-height: 1.45;
+}
+
+/* ==========================================================================
+   PUBLIC FORM CARD - Luxury White Card Design
+   ========================================================================== */
+.public-form-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 2.75rem;
+    box-shadow: 0 15px 40px rgba(15, 28, 52, 0.06);
+}
+
+.public-form-card .form-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #0F172A;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #1E293B;
+    border-radius: 8px;
+    border: 1px solid #CBD5E1;
+    padding: 0.7rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+    background-color: #FFFDF9;
+}
+
+.form-text {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: #64748B;
+    margin-top: 0.35rem;
+}
+
+.form-check-label {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: #334155;
+    line-height: 1.55;
+}
+
+#publicSubmitButton {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 0.85rem 2.2rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #070E1B 0%, #0F1C34 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
+    transition: all 0.3s ease;
+}
+
+#publicSubmitButton:hover {
+    background: linear-gradient(135deg, #C5A880 0%, #D4AF37 50%, #B89350 100%);
+    color: #070E1B;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.35);
+}
+
+/* ==========================================================================
+   SUCCESS NOTIFICATION BOX
+   ========================================================================== */
+.cef-public-success {
+    background: #FFFDF8 !important;
+    border: 1px solid #D4AF37 !important;
+    border-left: 5px solid #D4AF37 !important;
+    border-radius: 14px !important;
+    padding: 1.75rem !important;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.12) !important;
+}
+
+.cef-public-success strong {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0F172A;
+    display: block;
+    margin-bottom: 0.45rem;
+}
+
+.cef-public-success p {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.cef-public-success code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #B8860B;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    display: inline-block;
+    margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   TRACKING CARD & RESULTS
+   ========================================================================== */
+.public-track-section {
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.track-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 2.25rem;
+    box-shadow: 0 15px 40px rgba(15, 28, 52, 0.06);
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.track-card button {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #C5A880 0%, #D4AF37 50%, #B89350 100%);
+    border: none;
+    color: #070E1B;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
+    transition: all 0.3s ease;
+}
+
+.track-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #D4AF37 0%, #E5C07B 50%, #C5A880 100%);
+}
+
+.track-history {
+    display: grid;
+    gap: 0.95rem;
+}
+
+.track-history > div {
+    border-left: 3px solid #D4AF37;
+    padding-left: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.track-history strong {
+    font-family: var(--font-serif);
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #0F172A;
+    letter-spacing: 0.3px;
+}
+
+.track-history small {
+    font-family: var(--font-sans);
+    display: block;
+    color: #64748B;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 0.25rem;
+}
+
+.cef-code {
+    font-family: var(--font-sans);
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #B8860B;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.cef-status {
+    font-family: var(--font-sans);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: #E2E8F0;
+    color: #334155;
+}
+
+.cef-status.good {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.cef-status.warn {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.cef-status.bad {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+/* ==========================================================================
+   HOW IT WORKS SERVICE CARDS
+   ========================================================================== */
+.public-service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.public-service-card {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: flex-start;
+    min-height: 190px;
+    padding: 1.6rem 1.4rem;
+    color: #475569;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-bottom: 4px solid var(--gold);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15, 28, 52, 0.05);
+    text-align: left;
+    transition: all 0.35s ease;
+}
+
+.public-service-card:hover {
+    transform: translateY(-5px);
+    border-color: #D4AF37;
+    box-shadow: 0 18px 40px rgba(15, 28, 52, 0.12);
+}
+
+.public-service-card > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: #B8860B;
+    background: linear-gradient(135deg, #FFFDF8 0%, #F8F3E6 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    font-size: 1.35rem;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+.public-service-card strong {
+    font-family: var(--font-serif);
+    color: #0F172A;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: block;
+}
+
+.public-service-card p {
+    font-family: var(--font-sans);
+    margin: 0.45rem 0 0;
+    color: #64748B;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   PUBLIC FOOTER - Grand Executive Bottom Bar
+   ========================================================================== */
+.public-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2.25rem clamp(1rem, 7vw, 7rem);
+    background: #070E1B;
+    border-top: 1px solid rgba(212, 175, 55, 0.22);
+    color: #94A3B8;
+    font-family: var(--font-sans);
+    font-size: 0.825rem;
+}
+
+.public-footer strong {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.6px;
+    display: block;
+}
+
+.public-footer small {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #E5C07B;
+    display: block;
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 992px) {
+    .public-hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .public-service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .public-type-switch {
+        grid-template-columns: 1fr;
+    }
+
+    .public-service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .public-form-card {
+        padding: 1.5rem;
+    }
+
+    .public-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.85rem;
+        padding: 1rem;
+    }
+
+    .public-topbar nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .public-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}

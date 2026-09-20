@@ -1,0 +1,7 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../includes/cepfms_operational_helpers.php';
+requireCefPermission('cepfms.feedback.view');
+$pdo=db();$id=(int)($_GET['id']??0);$s=cefSubmissionRow($pdo,$id);if(!$s||$s['submission_type']!=='Feedback')exit('Feedback not found.');$q=$pdo->prepare('SELECT * FROM cef_feedback_submissions WHERE submission_id=:id');$q->execute([':id'=>$id]);$f=$q->fetch()?:[];
+?>
+<!doctype html><html><head><meta charset="utf-8"><title><?= e($s['reference_number']) ?></title><style>body{font:12px Arial;margin:28px;color:#111827}.head{text-align:center;border-bottom:3px solid #0f2137;padding-bottom:12px}.box{border:1px solid #ccc;padding:10px;margin-top:12px}</style></head><body onload="window.print()"><div class="head"><strong><?= e(APP_NAME) ?></strong><h2>Public Feedback Record</h2><div><?= e($s['reference_number']) ?></div></div><h3><?= e($s['title']) ?></h3><div class="box"><strong>Received:</strong> <?= formatDateTime($s['created_at']) ?><br><strong>Category:</strong> <?= e($s['category_name']?:'Unclassified') ?><br><strong>Priority:</strong> <?= e($s['priority_level']) ?><br><strong>Status:</strong> <?= e($s['status']) ?><br><strong>Feedback Kind:</strong> <?= e($f['feedback_kind']??'General Feedback') ?><br><strong>Service Area:</strong> <?= e($f['service_area']??'—') ?><br><br><strong>Details</strong><br><?= nl2br(e($s['details'])) ?></div></body></html>

@@ -1,0 +1,243 @@
+:root {
+    --navy: #0a1b30;
+    --navy-soft: #1a3a5c;
+    --gold: #b8860b;
+    --muted: #64748b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: #0f172a;
+    background: #edf3f8;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.login-shell {
+    display: grid;
+    grid-template-columns: minmax(0,1.1fr) minmax(420px,.9fr);
+    min-height: 100vh;
+}
+
+.login-brand-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 4rem;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(245,200,66,.18),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #071426,
+            #102a46
+        );
+}
+
+.login-brand-panel::after {
+    position: absolute;
+    right: -150px;
+    bottom: -150px;
+    width: 420px;
+    height: 420px;
+    content: "";
+    border: 55px solid rgba(255,255,255,.025);
+    border-radius: 50%;
+}
+
+.login-brand-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.login-brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    color: #071426;
+    background: var(--gold);
+    border-radius: 17px;
+    font-size: 1.8rem;
+}
+
+.login-brand-label {
+    margin-top: 1.8rem;
+    color: var(--gold);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.login-brand-content h1 {
+    max-width: 600px;
+    margin: .6rem 0 1rem;
+    font-size: clamp(2rem,4vw,3.8rem);
+    line-height: 1.05;
+}
+
+.login-brand-content > p {
+    max-width: 570px;
+    color: rgba(255,255,255,.62);
+    font-size: .95rem;
+    line-height: 1.7;
+}
+
+.login-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1.5rem;
+}
+
+.login-capabilities span {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .55rem .7rem;
+    color: rgba(255,255,255,.78);
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 999px;
+    font-size: .68rem;
+}
+
+.login-capabilities i {
+    color: var(--gold);
+}
+
+.login-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card {
+    width: min(100%,440px);
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #dce5ee;
+    border-top: 5px solid var(--gold);
+    border-radius: 16px;
+    box-shadow: 0 22px 60px rgba(15,33,55,.12);
+}
+
+.login-card-heading span {
+    color: #b8860b;
+    font-size: .65rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+}
+
+.login-card-heading h2 {
+    margin: .25rem 0;
+    color: var(--navy);
+    font-weight: 800;
+}
+
+.login-card-heading p {
+    margin: 0 0 1.5rem;
+    color: var(--muted);
+    font-size: .8rem;
+}
+
+.form-label {
+    color: #475569;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.form-control,
+.input-group-text,
+.btn {
+    min-height: 44px;
+}
+
+.input-group-text {
+    color: var(--navy-soft);
+    background: #f8fafc;
+}
+
+.login-submit {
+    margin-top: .5rem;
+    background: var(--navy-soft);
+    border-color: var(--navy-soft);
+}
+
+.login-submit:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+}
+
+.login-note {
+    display: flex;
+    align-items: flex-start;
+    gap: .55rem;
+    margin-top: 1.2rem;
+    padding: .75rem;
+    color: var(--muted);
+    background: #f8fafc;
+    border-radius: 99px;
+    font-size: .65rem;
+    line-height: 1.5;
+}
+
+.login-note i {
+    color: #059669;
+}
+
+@media (max-width: 900px) {
+    .login-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .login-brand-panel {
+        min-height: 360px;
+        padding: 2.5rem 2rem;
+    }
+
+    .login-form-panel {
+        padding: 2rem 1rem;
+    }
+}
+
+.login-public-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 43px;
+    margin-top: .75rem;
+    color: var(--navy-soft);
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 99px;
+    font-size: .68rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-public-link:hover {
+    color: #fff;
+    background: var(--navy-soft);
+}

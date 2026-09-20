@@ -1,0 +1,7 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../includes/cepfms_operational_helpers.php';
+requireCefPermission('cepfms.reports.view');
+$summary=cefAnalyticsSummary(db());
+?>
+<!doctype html><html><head><meta charset="utf-8"><title>CEPFMS Operational Summary</title><style>body{font:11px Arial;margin:25px;color:#111827}.head{text-align:center;border-bottom:3px solid #0f2137;padding-bottom:12px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.card{border:1px solid #ccc;border-top:4px solid #d4a90b;padding:8px}.card strong{display:block;font-size:18px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:6px}th{background:#eee}</style></head><body onload="window.print()"><div class="head"><strong><?= e(APP_NAME) ?></strong><h2>Operational Summary</h2><div><?= date('F j, Y g:i A') ?></div></div><div class="cards"><div class="card"><strong><?= $summary['total'] ?></strong>Citizen Submissions</div><div class="card"><strong><?= $summary['pending_moderation'] ?></strong>Moderation Queue</div><div class="card"><strong><?= $summary['overdue_complaints'] ?></strong>Overdue Complaints</div><div class="card"><strong><?= $summary['delivered_responses'] ?></strong>Delivered Responses</div></div><table><thead><tr><th>Metric</th><th>Count</th></tr></thead><tbody><?php foreach($summary as $key=>$value): ?><tr><td><?= e(ucwords(str_replace('_',' ',$key))) ?></td><td><?= (int)$value ?></td></tr><?php endforeach; ?></tbody></table></body></html>
