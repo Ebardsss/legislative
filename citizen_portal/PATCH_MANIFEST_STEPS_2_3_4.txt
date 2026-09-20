@@ -1,0 +1,11 @@
+README_STEPS_2_3_4.txt
+assets/css/public-modules.css
+database/validation_002_public_orlms_lacms_vqdss.sql
+includes/public_data.php
+modules/calendar/agenda.php
+modules/calendar/index.php
+modules/calendar/view.php
+modules/ordinances/index.php
+modules/ordinances/view.php
+modules/voting/index.php
+modules/voting/view.php

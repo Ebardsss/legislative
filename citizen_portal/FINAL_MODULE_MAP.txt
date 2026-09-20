@@ -1,0 +1,37 @@
+LEGISLATIVE CITIZEN PORTAL - FINAL MODULE MAP
+
+PUBLIC / ACCOUNT
+- /index.php
+- /register.php
+- /login.php
+- /dashboard.php
+- /pages/search.php
+- /pages/notifications.php
+- /pages/profile.php
+- /pages/account_security.php
+- /pages/system_health.php
+
+ORLMS
+- /modules/ordinances/index.php
+- /modules/ordinances/view.php
+
+LACMS
+- /modules/calendar/index.php
+- /modules/calendar/view.php
+- /modules/calendar/agenda.php
+
+VQDSS
+- /modules/voting/index.php
+- /modules/voting/view.php
+
+PHCMS
+- /modules/hearings/index.php
+- /modules/hearings/view.php
+- /modules/hearings/register.php
+
+CEPFMS
+- /modules/engagement/index.php
+- /modules/engagement/create.php
+- /modules/engagement/view.php
+- /modules/engagement/save.php
+- /modules/engagement/followup.php

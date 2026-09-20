@@ -1,0 +1,24 @@
+[14-Sep-2026 06:51:59 Asia/Manila] PHP Warning:  Undefined variable $subsystems in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 06:51:59 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 06:52:00 Asia/Manila] PHP Warning:  Undefined variable $subsystems in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 06:52:00 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 06:52:02 Asia/Manila] PHP Warning:  Undefined variable $subsystems in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 06:52:02 Asia/Manila] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\legislative\citizen_portal\layouts\header.php on line 57
+[14-Sep-2026 07:02:09 Asia/Manila] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'legislative_management_db.citizen_users' doesn't exist in C:\Users\DELL\.gemini\antigravity-ide\brain\889aad71-017d-4b23-b0c7-7452740d168b\scratch\test_citizen_dashboard.php:5
+Stack trace:
+#0 C:\Users\DELL\.gemini\antigravity-ide\brain\889aad71-017d-4b23-b0c7-7452740d168b\scratch\test_citizen_dashboard.php(5): PDO->query('SELECT id, emai...')
+#1 {main}
+  thrown in C:\Users\DELL\.gemini\antigravity-ide\brain\889aad71-017d-4b23-b0c7-7452740d168b\scratch\test_citizen_dashboard.php on line 5
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_name(): Session name cannot be changed after headers have already been sent in C:\Users\DELL\.gemini\antigravity-ide\brain\889aad71-017d-4b23-b0c7-7452740d168b\scratch\test_citizen_dashboard.php on line 9
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\Users\DELL\.gemini\antigravity-ide\brain\889aad71-017d-4b23-b0c7-7452740d168b\scratch\test_citizen_dashboard.php on line 10
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 14
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 15
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 16
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_name(): Session name cannot be changed after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 18
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 19
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 26
+[14-Sep-2026 07:02:36 Asia/Manila] PHP Warning:  session_regenerate_id(): Session ID cannot be regenerated when there is no active session in C:\xampp\htdocs\legislative\citizen_portal\includes\auth.php on line 79
+[17-Sep-2026 13:31:07 Asia/Manila] [Citizen Portal registration] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'junar' for key 'uq_users_username'
+[17-Sep-2026 13:31:46 Asia/Manila] [Citizen Portal registration] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'junar' for key 'uq_users_username'
+[17-Sep-2026 13:32:56 Asia/Manila] [Citizen Portal registration] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'junar' for key 'uq_users_username'
+[17-Sep-2026 13:33:44 Asia/Manila] [Citizen Portal registration] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'junar' for key 'uq_users_username'
