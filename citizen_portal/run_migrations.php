@@ -18,6 +18,10 @@ foreach ($files as $file) {
     }
     echo "Running: $file\n";
     $sql = file_get_contents($file);
+
+    // Remove any USE `...`; statements since we already connect to the right DB
+    $sql = preg_replace('/^\s*USE\s+`?[a-zA-Z0-9_]+`?\s*;/mi', '', $sql);
+
     try {
         $pdo->exec($sql);
         echo "SUCCESS\n\n";
