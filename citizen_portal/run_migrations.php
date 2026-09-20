@@ -1,4 +1,5 @@
 <?php
+echo "SCRIPT VERSION: 2\n\n";
 require_once __DIR__.'/config/app.php';
 require_once __DIR__.'/config/database.php';
 
